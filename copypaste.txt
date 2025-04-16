@@ -20,3 +20,5 @@ decoded_string = decoded_bytes.decode('utf-8')
 print("Decoded:", decoded_string)
 
 hadoop credential get mysecretkey -provider jceks://file/path/to/yourfile.jceks
+
+hadoop credential get doc_sql_connect -provider jceks://hdfs/path/to/yourfile.jceks
