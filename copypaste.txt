@@ -22,3 +22,23 @@ print("Decoded:", decoded_string)
 hadoop credential get mysecretkey -provider jceks://file/path/to/yourfile.jceks
 
 hadoop credential get doc_sql_connect -provider jceks://hdfs/path/to/yourfile.jceks
+
+------------------------------
+✅ Here's What to Do in TOAD:
+Open TOAD for SQL Server
+Connect to the server where you want to check authentication
+Open a new SQL Editor window
+Paste and run these queries:
+
+🔍 To check the authentication mode:
+SELECT SERVERPROPERTY('IsIntegratedSecurityOnly') AS IsIntegratedSecurityOnly;
+🔍 To check if pavuser is a SQL login:
+SELECT name, type_desc FROM sys.server_principals
+WHERE type_desc = 'SQL_LOGIN' AND name = 'pavuser';
+🔍 To see all SQL logins (optional):
+SELECT name, type_desc FROM sys.server_principals
+WHERE type_desc = 'SQL_LOGIN';
+🧠 Result Interpretation:
+If the first query returns 0 → Mixed Mode is enabled (you can use SQL logins like UID + PWD)
+If the second query returns a row → pavuser is a SQL-auth login and should work with pyodbc using UID/PWD.
+--------------------------
